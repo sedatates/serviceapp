@@ -1,17 +1,37 @@
 import React from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
+import {Button, SafeAreaView, Text, View} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
+import ServiceItem from '../../components';
 import styles from './styles';
 
 const ListingScreen = ({navigation}) => {
-  const {state} = useSelector(reducer => ({
-    state: reducer.service,
+  const {services, categories} = useSelector(reducer => ({
+    services: reducer.service.items,
+    categories: reducer.category.items,
   }));
-  console.log(state);
+
+  const renderItem = ({item}) => <ServiceItem listitem={item} />;
+  const renderFilters = ({item}) => <Text>{item.name}</Text>;
+
   return (
     <SafeAreaView>
-      <Text style={styles.container}>sedat</Text>
-      <Button title="sedat" onPress={() => navigation.navigate('Home')} />
+      <Button title="backtohome" onPress={() => navigation.navigate('Home')} />
+      <FlatList
+        horizontal
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        legacyImplementation={false}
+        data={categories}
+        renderItem={renderFilters}
+        keyExtractor={(item, index) => index}
+      />
+
+      <FlatList
+        data={services}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index}
+      />
     </SafeAreaView>
   );
 };

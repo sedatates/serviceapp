@@ -2,12 +2,14 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, SafeAreaView, Text, View} from 'react-native';
 import {getServices} from '../../redux/features/serviceSlice';
+import {getCategory} from '../../redux/features/categorySlice';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getServices());
+    dispatch(getCategory());
   }, []);
 
   return (
