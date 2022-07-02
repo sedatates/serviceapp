@@ -1,12 +1,24 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'black',
-    alignItems: 'center',
+  background: {
+    width: '100%',
+  },
+  goBackButton: {
+    width: '33%',
+    height: '5%',
+    borderRadius: 50,
+    backgroundColor: '#0B7F89',
+    alignSelf: 'center',
+    bottom: '2%',
+    position: 'absolute',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
     color: 'white',
-    marginLeft: 10,
+    fontSize: 25,
+    fontFamily: 'Gilroy-Bold',
   },
 });
 

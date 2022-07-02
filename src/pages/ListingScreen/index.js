@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 import ServiceItem from '../../components';
@@ -15,8 +15,7 @@ const ListingScreen = ({navigation}) => {
   const renderFilters = ({item}) => <Text>{item.name}</Text>;
 
   return (
-    <SafeAreaView>
-      <Button title="backtohome" onPress={() => navigation.navigate('Home')} />
+    <View style={styles.background}>
       <FlatList
         horizontal
         pagingEnabled={true}
@@ -26,13 +25,17 @@ const ListingScreen = ({navigation}) => {
         renderItem={renderFilters}
         keyExtractor={(item, index) => index}
       />
-
       <FlatList
         data={services}
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
       />
-    </SafeAreaView>
+      <TouchableOpacity
+        style={styles.goBackButton}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.buttonText}>BACK</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
