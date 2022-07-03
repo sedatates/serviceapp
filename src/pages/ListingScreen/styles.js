@@ -5,6 +5,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  filterContainer: {
+    overflow: 'hidden',
+    elevation: 20,
+  },
+  filterList: {
+    borderTopColor: '#E6E6E6',
+    borderTopWidth: 1,
+    borderBottomColor: '#E6E6E6',
+    borderBottomWidth: 1,
+  },
   header: {
     width: 345,
     display: 'flex',
@@ -16,8 +26,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 20,
-    fontWeight: '400',
     color: '#363A3D',
+    fontFamily: 'Splash-Regular',
   },
   goBackButton: {
     width: 35,

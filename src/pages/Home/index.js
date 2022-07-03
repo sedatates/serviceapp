@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Button, SafeAreaView, Text, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {getServices} from '../../redux/features/serviceSlice';
 import {getCategory} from '../../redux/features/categorySlice';
+import Boatmate from '../../assets/logo.svg';
+import styles from './styles';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
@@ -13,14 +15,15 @@ const Home = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View>
-        <Text>Home Screen</Text>
+    <View style={styles.background}>
+      <View style={styles.logo}>
+        <Boatmate />
       </View>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Service')}
-      />
+      <TouchableOpacity
+        style={styles.servicesButton}
+        onPress={() => navigation.navigate('Service')}>
+        <Text style={styles.serviceButtonText}>Servislere Git</Text>
+      </TouchableOpacity>
     </View>
   );
 };

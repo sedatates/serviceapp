@@ -12,7 +12,7 @@ function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{title: 'Boat Mate'}}
+          options={{title: 'Boatmate'}}
         />
         <Stack.Screen
           options={{headerShown: false}}
