@@ -1,3 +1,4 @@
 import ServiceItem from './ServiceItem';
+import CategoryItem from './CategoryItem';
 
-export default ServiceItem;
+export {ServiceItem, CategoryItem};

@@ -2,23 +2,32 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   background: {
-    width: '100%',
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  header: {
+    width: 345,
+    display: 'flex',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#363A3D',
   },
   goBackButton: {
-    width: '33%',
-    height: '5%',
-    borderRadius: 50,
-    backgroundColor: '#0B7F89',
-    alignSelf: 'center',
-    bottom: '2%',
-    position: 'absolute',
+    width: 35,
+    height: 35,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   buttonText: {
-    color: 'white',
     fontSize: 25,
-    fontFamily: 'Gilroy-Bold',
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

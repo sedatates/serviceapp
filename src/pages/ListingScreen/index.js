@@ -1,9 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
-import ServiceItem from '../../components';
+import {ServiceItem, CategoryItem} from '../../components';
 import styles from './styles';
+import Arrow from '../../assets/Arrow.svg';
+import Settings from '../../assets/Settings.svg';
 
 const ListingScreen = ({navigation}) => {
   const {services, categories} = useSelector(reducer => ({
@@ -11,30 +13,38 @@ const ListingScreen = ({navigation}) => {
     categories: reducer.category.items,
   }));
 
-  const renderItem = ({item}) => <ServiceItem listitem={item} />;
-  const renderFilters = ({item}) => <Text>{item.name}</Text>;
+  const renderItem = ({item}) => <ServiceItem listItem={item} />;
+  const renderFilters = ({item}) => <CategoryItem listItem={item} />;
 
   return (
     <View style={styles.background}>
-      <FlatList
-        horizontal
-        pagingEnabled={true}
-        showsHorizontalScrollIndicator={false}
-        legacyImplementation={false}
-        data={categories}
-        renderItem={renderFilters}
-        keyExtractor={(item, index) => index}
-      />
-      <FlatList
-        data={services}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index}
-      />
-      <TouchableOpacity
-        style={styles.goBackButton}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>BACK</Text>
-      </TouchableOpacity>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.goBackButton}
+          onPress={() => navigation.navigate('Home')}>
+          <Arrow />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Services</Text>
+        <Settings />
+      </View>
+      <View style={{backgroundColor: 'white'}}>
+        <FlatList
+          horizontal
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          legacyImplementation={false}
+          data={categories}
+          renderItem={renderFilters}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
+      <View style={{height: '100%'}}>
+        <FlatList
+          data={services}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
     </View>
   );
 };

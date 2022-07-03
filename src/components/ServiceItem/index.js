@@ -1,34 +1,48 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import styles from './styles';
+import Hearth from '../../assets/Hearth.svg';
+import Clock from '../../assets/Clock.svg';
+import Bluestar from '../../assets/BlueStar.svg';
 
-const ServiceItem = ({listitem}) => {
+const ServiceItem = ({listItem}) => {
   const parseDate = date => {
     const dateObj = new Date(date);
-    const day = dateObj.getDate();
-    const month = dateObj.getMonth() + 1;
-    const year = dateObj.getFullYear();
-    return `${day}/${month}/${year}`;
+    const hours = dateObj.getHours();
+    return `${hours} hours later`;
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.leftPart}>
-          <View style={styles.image} />
+          <Image
+            style={styles.image}
+            source={{
+              uri: listItem.thumbnail,
+            }}
+          />
 
           <View style={styles.infoContainer}>
-            <Text style={styles.text}>{listitem.title}</Text>
-            <Text style={styles.text}>{listitem.type}</Text>
-            <Text style={styles.text}>
-              {parseDate(listitem.earliestTimeAvailable)}
-            </Text>
+            <Text style={styles.cardTitle}>{listItem.title}</Text>
+            <Text style={styles.cardTypeText}>{listItem.type}</Text>
+            <View style={styles.clockContainer}>
+              <Clock />
+              <Text style={styles.hourText}>
+                {parseDate(listItem.earliestTimeAvailable)}
+              </Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.rightPart}>
-          <Text>{listitem.rating}</Text>
-          <Text>{listitem.rating}</Text>
+          <View style={styles.heartButton}>
+            <Hearth />
+          </View>
+          <View style={styles.ratingContainer}>
+            <Bluestar />
+            <Text style={styles.ratingText}>{listItem.rating}</Text>
+          </View>
         </View>
       </View>
     </View>
